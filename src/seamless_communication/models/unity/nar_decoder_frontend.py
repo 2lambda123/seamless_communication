@@ -176,9 +176,11 @@ class NARDecoderFrontend(Module):
             assert subword_indices.shape[0] == len(subwords)
 
             is_next_start_with_space = [
-                len(subwords[i + 1]) > 1 and subwords[i + 1][0] == SPACE
-                if i < len(subwords) - 1
-                else False
+                (
+                    len(subwords[i + 1]) > 1 and subwords[i + 1][0] == SPACE
+                    if i < len(subwords) - 1
+                    else False
+                )
                 for i in range(len(subwords))
             ]
             is_punc = [

@@ -2971,5 +2971,3 @@ void rftbsub(int n, double *a, int nc, double *c)
         a[k + 1] -= yi;
     }
 }
-
-

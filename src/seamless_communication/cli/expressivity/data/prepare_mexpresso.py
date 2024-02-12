@@ -214,7 +214,9 @@ def main() -> None:
             df["tgt_lang"] = lang
             # Check all the audio files exist
             assert all(os.path.isfile(audio) for audio in df["src_audio"].tolist())
-            output_manifest_path = args.output_folder / f"{subset}_mexpresso_eng_{lang}.tsv"
+            output_manifest_path = (
+                args.output_folder / f"{subset}_mexpresso_eng_{lang}.tsv"
+            )
             df[
                 [
                     "id",

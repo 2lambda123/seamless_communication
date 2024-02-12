@@ -84,9 +84,7 @@ def _replace_with_new_unit_output_in_batch(
         )
     else:
         # pad on the new units
-        new_units = F.pad(
-            new_units, pad=nb_pads, mode="constant", value=pad_idx
-        )
+        new_units = F.pad(new_units, pad=nb_pads, mode="constant", value=pad_idx)
     original_units[indices_with_toxicity_tensor] = new_units
 
 

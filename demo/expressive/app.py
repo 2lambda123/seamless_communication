@@ -25,7 +25,11 @@ from fairseq2.generation import NGramRepeatBlockProcessor
 from fairseq2.memory import MemoryBlock
 from fairseq2.typing import DataType, Device
 from huggingface_hub import snapshot_download
-from seamless_communication.inference import BatchedSpeechOutput, Translator, SequenceGeneratorOptions
+from seamless_communication.inference import (
+    BatchedSpeechOutput,
+    Translator,
+    SequenceGeneratorOptions,
+)
 from seamless_communication.models.generator.loader import load_pretssel_vocoder_model
 from seamless_communication.models.unity import (
     UnitTokenizer,
@@ -34,7 +38,9 @@ from seamless_communication.models.unity import (
     load_unity_unit_tokenizer,
 )
 from torch.nn import Module
-from seamless_communication.cli.expressivity.evaluate.pretssel_inference_helper import PretsselGenerator
+from seamless_communication.cli.expressivity.evaluate.pretssel_inference_helper import (
+    PretsselGenerator,
+)
 
 from utils import LANGUAGE_CODE_TO_NAME
 
@@ -47,8 +53,16 @@ CACHE_EXAMPLES = os.getenv("CACHE_EXAMPLES") == "1" and torch.cuda.is_available(
 
 CHECKPOINTS_PATH = pathlib.Path(os.getenv("CHECKPOINTS_PATH", "/home/user/app/models"))
 if not CHECKPOINTS_PATH.exists():
-    snapshot_download(repo_id="facebook/seamless-expressive", repo_type="model", local_dir=CHECKPOINTS_PATH)
-    snapshot_download(repo_id="facebook/seamless-m4t-v2-large", repo_type="model", local_dir=CHECKPOINTS_PATH)
+    snapshot_download(
+        repo_id="facebook/seamless-expressive",
+        repo_type="model",
+        local_dir=CHECKPOINTS_PATH,
+    )
+    snapshot_download(
+        repo_id="facebook/seamless-m4t-v2-large",
+        repo_type="model",
+        local_dir=CHECKPOINTS_PATH,
+    )
 
 # Ensure that we do not have any other environment resolvers and always return
 # "demo" for demo purposes.
@@ -171,11 +185,15 @@ def remove_prosody_tokens_from_text(text):
 
 def preprocess_audio(input_audio_path: str) -> None:
     arr, org_sr = torchaudio.load(input_audio_path)
-    new_arr = torchaudio.functional.resample(arr, orig_freq=org_sr, new_freq=AUDIO_SAMPLE_RATE)
+    new_arr = torchaudio.functional.resample(
+        arr, orig_freq=org_sr, new_freq=AUDIO_SAMPLE_RATE
+    )
     max_length = int(MAX_INPUT_AUDIO_LENGTH * AUDIO_SAMPLE_RATE)
     if new_arr.shape[1] > max_length:
         new_arr = new_arr[:, :max_length]
-        gr.Warning(f"Input audio is too long. Only the first {MAX_INPUT_AUDIO_LENGTH} seconds is used.")
+        gr.Warning(
+            f"Input audio is too long. Only the first {MAX_INPUT_AUDIO_LENGTH} seconds is used."
+        )
     torchaudio.save(input_audio_path, new_arr, sample_rate=AUDIO_SAMPLE_RATE)
 
 

@@ -204,7 +204,9 @@ text_source_language_codes = [
     "zsm",
     "zul",
 ]
-TEXT_SOURCE_LANGUAGE_NAMES = sorted([language_code_to_name[code] for code in text_source_language_codes])
+TEXT_SOURCE_LANGUAGE_NAMES = sorted(
+    [language_code_to_name[code] for code in text_source_language_codes]
+)
 
 # Target langs:
 # S2ST / T2ST
@@ -246,7 +248,9 @@ s2st_target_language_codes = [
     "uzn",
     "vie",
 ]
-S2ST_TARGET_LANGUAGE_NAMES = sorted([language_code_to_name[code] for code in s2st_target_language_codes])
+S2ST_TARGET_LANGUAGE_NAMES = sorted(
+    [language_code_to_name[code] for code in s2st_target_language_codes]
+)
 T2ST_TARGET_LANGUAGE_NAMES = S2ST_TARGET_LANGUAGE_NAMES
 
 # S2TT / T2TT / ASR

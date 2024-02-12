@@ -129,9 +129,9 @@ class UnitYDataLoader:
         """Expected sequence is [<eos>, <lang_tok> , ..text tokens.., <eos>]"""
         target_lang = sample.target.lang
         if target_lang not in self.text_encoders_per_lang:
-            self.text_encoders_per_lang[
-                target_lang
-            ] = self.text_tokenizer.create_encoder(lang=target_lang, mode="target")
+            self.text_encoders_per_lang[target_lang] = (
+                self.text_tokenizer.create_encoder(lang=target_lang, mode="target")
+            )
         tokens = self.text_encoders_per_lang[target_lang](sample.target.text)
         eos_idx = self.text_tokenizer.vocab_info.eos_idx
         tokens = torch.concat([tokens, torch.LongTensor([eos_idx])])
@@ -143,9 +143,9 @@ class UnitYDataLoader:
             return None
         target_lang = sample.target.lang
         if target_lang not in self.unit_encoders_per_lang:
-            self.unit_encoders_per_lang[
-                target_lang
-            ] = self.unit_tokenizer.create_encoder(lang=target_lang)
+            self.unit_encoders_per_lang[target_lang] = (
+                self.unit_tokenizer.create_encoder(lang=target_lang)
+            )
         tokens = self.unit_encoders_per_lang[target_lang](
             torch.LongTensor(sample.target.units).unsqueeze(0)
         )

@@ -17,7 +17,7 @@ pub fn main() !void {
     };
 
     var opt_params = c.ggml_opt_default_params(c.GGML_OPT_LBFGS);
-    
+
     const nthreads = try Thread.getCpuCount();
     opt_params.n_threads = @intCast(nthreads);
 
@@ -40,12 +40,12 @@ pub fn main() !void {
     for (0..NP) |j| {
         const ll = if (j < NP/2) @as(f32, 1.0) else @as(f32, -1.0);
         l_data_pointer[j] = ll;
-        
+
         for (0..NF) |i| {
             const c_rand: f32 = @floatFromInt(c.rand());
-            f_data_pointer[j*NF + i] = 
-                ((if (ll > 0 and i < NF/2) @as(f32, 1.0) else 
-                    if (ll < 0 and i >= NF/2) @as(f32, 1.0) else @as(f32, 0.0)) + 
+            f_data_pointer[j*NF + i] =
+                ((if (ll > 0 and i < NF/2) @as(f32, 1.0) else
+                    if (ll < 0 and i >= NF/2) @as(f32, 1.0) else @as(f32, 0.0)) +
                         (c_rand/c.RAND_MAX - 0.5) * 0.1) / (0.5 * NF);
         }
     }

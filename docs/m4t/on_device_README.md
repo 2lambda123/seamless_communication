@@ -4,7 +4,7 @@ Apart from SeamlessM4T-LARGE (2.3B) and SeamlessM4T-MEDIUM (1.2B) models, we are
 This folder contains an example to run an exported small model covering most tasks (ASR/S2TT/S2ST). The model could be executed on popular mobile devices with Pytorch Mobile (https://pytorch.org/mobile/home/).
 
 ## Updates
-[2023/8/23] Uploaded new on-device models with several fixes to reduce size and avoid OOM. Metrics should be close to what's reported below, will rerun eval and update.   
+[2023/8/23] Uploaded new on-device models with several fixes to reduce size and avoid OOM. Metrics should be close to what's reported below, will rerun eval and update.
 
 ## Overview
 | Model   | Checkpoint | Num Params | Disk Size | Supported Tasks         | Supported Languages|
@@ -24,7 +24,7 @@ audio_input, _ = torchaudio.load(TEST_AUDIO_PATH) # Load waveform using torchaud
 s2t_model = torch.jit.load("unity_on_device_s2t.ptl") # Load exported S2T model
 with torch.no_grad():
     text = s2t_model(audio_input, tgt_lang=TGT_LANG) # Forward call with tgt_lang specified for ASR or S2TT
-print(text) # Show text output 
+print(text) # Show text output
 
 s2st_model = torch.jit.load("unity_on_device.ptl")
 with torch.no_grad():

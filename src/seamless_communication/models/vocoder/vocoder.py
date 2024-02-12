@@ -29,9 +29,9 @@ class Vocoder(Module):
         spkr_list: Union[Optional[List[int]], int] = None,
         dur_prediction: bool = True,
     ) -> Tensor:
-        # TODO: Do we need this backward compatibility, or just update all calling sites? 
+        # TODO: Do we need this backward compatibility, or just update all calling sites?
         if len(units.shape) == 1:
-            units = units.unsqueeze(0) # add batch dim
+            units = units.unsqueeze(0)  # add batch dim
         if isinstance(lang_list, str):
             lang_list = [lang_list] * units.size(0)
         if isinstance(spkr_list, int):
@@ -39,11 +39,17 @@ class Vocoder(Module):
         lang_idx_list = [self.lang_spkr_idx_map["multilingual"][l] for l in lang_list]
         if not spkr_list:
             spkr_list = [-1 for _ in range(len(lang_list))]
-        spkr_list = [self.lang_spkr_idx_map["multispkr"][lang_list[i]][0] if spkr_list[i] == -1 else spkr_list[i] for i in range(len(spkr_list))]
+        spkr_list = [
+            (
+                self.lang_spkr_idx_map["multispkr"][lang_list[i]][0]
+                if spkr_list[i] == -1
+                else spkr_list[i]
+            )
+            for i in range(len(spkr_list))
+        ]
         x = {
             "code": units.view(units.size(0), -1),
             "spkr": torch.tensor([spkr_list], device=units.device).t(),
             "lang": torch.tensor([lang_idx_list], device=units.device).t(),
-
         }
         return self.code_generator(x, dur_prediction)  # type: ignore[no-any-return]
