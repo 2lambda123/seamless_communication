@@ -136,7 +136,7 @@ int main(int argc, char ** argv) {
     int ctx_size_gb = 20;
     if (model.hparams["w2v2_encoder_config__num_encoder_layers"] == 24) {
         ctx_size_gb = 40;
-    } 
+    }
 
     char result_str[4096];
     static std::vector<uint8_t> encoder_buf(ctx_size_gb * 1024LL * 1024LL * 1024LL);
@@ -193,7 +193,7 @@ int main(int argc, char ** argv) {
 
         // Beam search decoding
         const Hypothesis* result = unity_decode(model, params.opts, tgt_lang_idx, encoder_output, params.n_threads);
-    
+
         // Drop language and bos token.
         ggml_tensor* tokens = ggml_slice(model.ctx, result[0].seq, 0, 2, 0);
 

@@ -71,19 +71,19 @@ we first set the `text_generation_opts`, `unit_generation_opts` and then transla
 ```python
 # S2ST
 text_output, speech_output = translator.predict(
-    input=<path_to_input_audio>, 
-    task_str="S2ST", 
-    tgt_lang=<tgt_lang>, 
-    text_generation_opts=text_generation_opts, 
+    input=<path_to_input_audio>,
+    task_str="S2ST",
+    tgt_lang=<tgt_lang>,
+    text_generation_opts=text_generation_opts,
     unit_generation_opts=unit_generation_opts
 )
 
 # T2ST
 text_output, speech_output = translator.predict(
-    input=<input_text>, 
-    task_str="T2ST", 
-    tgt_lang=<tgt_lang>, 
-    src_lang=<src_lang>, 
+    input=<input_text>,
+    task_str="T2ST",
+    tgt_lang=<tgt_lang>,
+    src_lang=<src_lang>,
     text_generation_opts=text_generation_opts,
     unit_generation_opts=unit_generation_opts
 )
@@ -106,30 +106,30 @@ torchaudio.save(
 ```python
 # S2TT
 text_output, _ = translator.predict(
-    input=<path_to_input_audio>, 
-    task_str="S2TT", 
-    tgt_lang=<tgt_lang>, 
-    text_generation_opts=text_generation_opts, 
+    input=<path_to_input_audio>,
+    task_str="S2TT",
+    tgt_lang=<tgt_lang>,
+    text_generation_opts=text_generation_opts,
     unit_generation_opts=None
 )
 
 # ASR
 # This is equivalent to S2TT with `<tgt_lang>=<src_lang>`.
     text_output, _ = translator.predict(
-    input=<path_to_input_audio>, 
-    task_str="ASR", 
-    tgt_lang=<src_lang>, 
-    text_generation_opts=text_generation_opts, 
+    input=<path_to_input_audio>,
+    task_str="ASR",
+    tgt_lang=<src_lang>,
+    text_generation_opts=text_generation_opts,
     unit_generation_opts=None
 )
 
 # T2TT
 text_output, _ = translator.predict(
-    input=<input_text>, 
-    task_str="T2TT", 
-    tgt_lang=<tgt_lang>, 
-    src_lang=<src_lang>, 
-    text_generation_opts=text_generation_opts, 
+    input=<input_text>,
+    task_str="T2TT",
+    tgt_lang=<tgt_lang>,
+    src_lang=<src_lang>,
+    text_generation_opts=text_generation_opts,
     unit_generation_opts=None
 )
 

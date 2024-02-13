@@ -15,12 +15,12 @@ This unified model enables multiple tasks without relying on multiple separate m
 
 
 ## SeamlessM4T v1
-The v1 version of SeamlessM4T is a multitask adaptation of the *UnitY* architecture [(Inaguma et al., 2023)](https://aclanthology.org/2023.acl-long.872/). 
+The v1 version of SeamlessM4T is a multitask adaptation of the *UnitY* architecture [(Inaguma et al., 2023)](https://aclanthology.org/2023.acl-long.872/).
 *UnitY* is a two-pass direct S2ST architecture which first generates textual representations and subsequently predicts discrete acoustic units.
 
 
 ## SeamlessM4T v2
-The v2 version of SeamlessM4T is a multitask adaptation of our novel *UnitY2* architecture. 
+The v2 version of SeamlessM4T is a multitask adaptation of our novel *UnitY2* architecture.
 *Unity2* with its hierarchical character-to-unit upsampling and non-autoregressive text-to-unit decoding considerably improves over SeamlessM4T v1 in quality and inference speed.
 
 
@@ -193,4 +193,3 @@ For SeamlessM4T v2, please cite :
   year={2023}
 }
 ```
-

@@ -365,7 +365,7 @@ extern "C" {
         GGML_OP_CONCAT,
         GGML_OP_SILU_BACK,
         GGML_OP_NORM, // normalize
-        GGML_OP_BATCH_NORM, 
+        GGML_OP_BATCH_NORM,
         GGML_OP_RMS_NORM,
         GGML_OP_RMS_NORM_BACK,
         GGML_OP_GROUP_NORM,
@@ -404,7 +404,7 @@ extern "C" {
         GGML_OP_CONV_1D_STAGE_2,  // internal
 
         GGML_OP_CONV_1D_GENERIC_STAGE_0,
-        GGML_OP_CONV_1D_GENERIC_STAGE_1,  
+        GGML_OP_CONV_1D_GENERIC_STAGE_1,
 
         GGML_OP_UPSCALE, // nearest interpolate
 

@@ -406,8 +406,7 @@ def build_and_compute(
 @c_fn(lib)
 def causal_attention_mask(
     ctx: ggml_context_p, seqs: Ptr[ggml_tensor]
-) -> Ptr[ggml_tensor]:
-    ...
+) -> Ptr[ggml_tensor]: ...
 
 
 @c_fn(lib)
@@ -417,8 +416,7 @@ def ggml_slice(
     axis: int,
     start: ctypes.c_int64,
     end: ctypes.c_int64,
-) -> Ptr[ggml_tensor]:
-    ...
+) -> Ptr[ggml_tensor]: ...
 
 
 @c_fn(lib)
@@ -479,8 +477,7 @@ def generate_sequence(
     encoder_output: Ptr[ggml_tensor],
     encoder_padding_mask: Ptr[ggml_tensor],
     result_ctx: ggml_context_p,
-) -> Ptr[Hypothesis]:
-    ...
+) -> Ptr[Hypothesis]: ...
 
 
 @c_fn(lib)

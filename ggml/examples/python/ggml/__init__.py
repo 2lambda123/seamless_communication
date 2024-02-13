@@ -30,7 +30,9 @@
 try:
     from ggml.cffi import ffi as ffi
 except ImportError as e:
-    raise ImportError(f"Couldn't find ggml bindings ({e}). Run `python regenerate.py` or check your PYTHONPATH.")
+    raise ImportError(
+        f"Couldn't find ggml bindings ({e}). Run `python regenerate.py` or check your PYTHONPATH."
+    )
 
 import os, platform
 
@@ -51,7 +53,9 @@ for i, name in enumerate(__candidates):
     except OSError:
         if i < len(__candidates) - 1:
             continue
-        raise OSError(f"Couldn't find ggml's shared library (tried names: {__candidates}). Add its directory to DYLD_LIBRARY_PATH (on Mac) or LD_LIBRARY_PATH, or define GGML_LIBRARY.")
+        raise OSError(
+            f"Couldn't find ggml's shared library (tried names: {__candidates}). Add its directory to DYLD_LIBRARY_PATH (on Mac) or LD_LIBRARY_PATH, or define GGML_LIBRARY."
+        )
 
 # This contains the cffi helpers such as new, cast, string, etc.
 # https://cffi.readthedocs.io/en/latest/ref.html#ffi-interface

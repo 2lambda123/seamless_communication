@@ -16,7 +16,7 @@ pub fn main() !void {
     };
 
     var opt_params = c.ggml_opt_default_params(c.GGML_OPT_LBFGS);
-    
+
     const nthreads = try Thread.getCpuCount();
     opt_params.n_threads = @intCast(nthreads);
     std.debug.print("test2: n_threads:{}\n", .{opt_params.n_threads});

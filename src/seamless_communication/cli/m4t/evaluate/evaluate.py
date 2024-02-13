@@ -242,10 +242,10 @@ def run_eval(
 
     model_outputs_tsv = output_path / f"model-outputs-{ctx.data_file.stem}.txt"
     unit_outputs_tsv = output_path / f"unit_output-{ctx.data_file.stem}.txt"
-    with open(model_outputs_tsv, "w") as hyp_file, open(
-        unit_outputs_tsv, "w"
-    ) if ctx.output_modality == Modality.SPEECH else contextlib.nullcontext(
-        itertools.repeat(None)
+    with open(model_outputs_tsv, "w") as hyp_file, (
+        open(unit_outputs_tsv, "w")
+        if ctx.output_modality == Modality.SPEECH
+        else contextlib.nullcontext(itertools.repeat(None))
     ) as unit_file:
         sample_id = 0
         if ctx.output_modality == Modality.SPEECH:
@@ -271,7 +271,10 @@ def run_eval(
 
             # Skip performing inference when the input is entirely corrupted.
             if src["seqs"].numel() > 0:
-                (text_output, speech_output,) = translator.predict(
+                (
+                    text_output,
+                    speech_output,
+                ) = translator.predict(
                     src,
                     ctx.task,
                     ctx.target_lang,
@@ -288,7 +291,10 @@ def run_eval(
                     speech_output = None
 
             if valid_sequences is not None and not valid_sequences.all():
-                (text_output, speech_output,) = adjust_output_for_corrupted_inputs(
+                (
+                    text_output,
+                    speech_output,
+                ) = adjust_output_for_corrupted_inputs(
                     valid_sequences,
                     text_output,
                     speech_output,

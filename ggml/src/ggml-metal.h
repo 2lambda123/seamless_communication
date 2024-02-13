@@ -82,4 +82,3 @@ void ggml_metal_graph_compute(struct ggml_metal_context * ctx, struct ggml_cgrap
 #ifdef __cplusplus
 }
 #endif
-

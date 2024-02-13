@@ -21,8 +21,7 @@ logger = logging.getLogger(__name__)
 
 class SpeechTokenizer:
     @abstractmethod
-    def encode(self, wav: torch.Tensor, sample_rate: int) -> torch.Tensor:
-        ...
+    def encode(self, wav: torch.Tensor, sample_rate: int) -> torch.Tensor: ...
 
 
 class Speech2SpeechFleursDatasetBuilder:

@@ -2,7 +2,7 @@
 
 Please refer to Section 3.3.2 of the "Seamless: Multilingual Expressive and Streaming Speech Translation" paper to read more details about aligner design & training.
 
-We provide a light-weight wrapper to extract alignments between given text and acoustic unit sequences. Unit extractor is also available from the wrapper itself. 
+We provide a light-weight wrapper to extract alignments between given text and acoustic unit sequences. Unit extractor is also available from the wrapper itself.
 
 ## Alignment extractor codebase
 
@@ -53,7 +53,7 @@ alignment_durations, _, tokenized_text_tokens = extractor.extract_alignment("sam
 Ru alignment plot:
 ![Ru alignment pic](ru_alignment.png)
 
-En audio example: 
+En audio example:
 
 * audio link: `https://dl.fbaipublicfiles.com/seamlessM4T/LJ037-0171_sr16k.wav`
 

@@ -21,7 +21,7 @@ Prosody UnitY2 is an expressive speech-to-unit translation model, injecting expr
 
 mExpresso is an expressive S2ST dataset that includes seven styles of read speech (i.e., default, happy, sad, confused, enunciated, whisper and laughing) between English and five other languages -- French, German, Italian, Mandarin and Spanish. We create the dataset by expanding a subset of read speech in [Expresso Dataset](https://github.com/facebookresearch/textlesslib/tree/main/examples/expresso/dataset). We first translate the English transcriptions into other languages, including the emphasis markers in the transcription, and then the gender matched bilingual speakers read the translation in the style suggested by the markers.
 
-We are currently open source the text translation of the other language to enable evaluating English to other directions. We will open source the audio files in the near future. 
+We are currently open source the text translation of the other language to enable evaluating English to other directions. We will open source the audio files in the near future.
 
 Text translation in other languages can be [Downloaded](https://dl.fbaipublicfiles.com/seamless/datasets/mexpresso_text/mexpresso_text.tar).
 

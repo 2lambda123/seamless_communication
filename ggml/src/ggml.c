@@ -7261,15 +7261,15 @@ static struct ggml_tensor * ggml_conv_1d_stage_0(
 
 static struct ggml_tensor * ggml_conv_1d_stage_1(
     struct ggml_context * ctx,
-    struct ggml_tensor  * a) { 
+    struct ggml_tensor  * a) {
 
     bool is_node = false;
 
     if (a->grad) {
-        GGML_ASSERT(false); 
+        GGML_ASSERT(false);
         is_node = true;
     }
-    // TODO: remove hardcoding 
+    // TODO: remove hardcoding
     struct ggml_tensor * result = ggml_new_tensor_3d(ctx, GGML_TYPE_F32, 31, a->ne[0]-30, a->ne[1]); // K, S, C
 
     result->op = GGML_OP_CONV_1D_STAGE_1;
@@ -7302,7 +7302,7 @@ static struct ggml_tensor * ggml_conv_1d_stage_2(
     return result;
 }
 
-// ggml_conv_1d - THIS IS FOR DEPTHWISE CONV ONLY. 
+// ggml_conv_1d - THIS IS FOR DEPTHWISE CONV ONLY.
 // TODO: merge with generic conv1d
 
 // 3 stages: (1) pad (2) unfold (3) mul
@@ -11081,12 +11081,12 @@ static void ggml_compute_forward_glu_f32(
     for (int i1 = 0; i1 < nr; i1++) {
         for (int i0 = 0; i0 < nc; i0++) {
             float *linear_part = (float *)((char *)src0->data + i0 * src0->nb[0] + i1 * src0->nb[1]);
-            float *gate = (float *) ((char *) src0->data + (i0+nc) * (src0->nb[0]) + i1 * src0->nb[1]); 
-            
+            float *gate = (float *) ((char *) src0->data + (i0+nc) * (src0->nb[0]) + i1 * src0->nb[1]);
+
             *gate = 1.0f / (1.0f + expf(-*gate));
             float *output = (float *) ((char *) dst->data + i0*(dst->nb[0]) + i1 * dst->nb[1]);
             *output = (*linear_part) * (*gate);
-            
+
         }
     }
 }
@@ -13813,15 +13813,15 @@ static void ggml_compute_forward_conv_1d_stage_2_f32(
 
     for (int i2 = 0; i2 < ne12; i2++) { // c
         for (int i1 = 0; i1 < ne11; i1++) { // s
-            float sum = 0.0f;   
+            float sum = 0.0f;
             for (int i0 = 0; i0 < ne10; i0++) { // k
-                float *src0_data_offset = (float *)((char *)src0->data + i0*nb00 + i2*nb01); 
+                float *src0_data_offset = (float *)((char *)src0->data + i0*nb00 + i2*nb01);
                 float *src1_data_offset = (float *)((char *)src1->data + i0*nb10 + i1*nb11 + i2*nb12);
                 sum += (*src1_data_offset) * (*src0_data_offset);
             }
             float *output = (float *) ((char *) dst->data + i1*(dst->nb[0]) + i2 * (dst->nb[1]));
             *output = sum;
-            
+
         }
     }
 }

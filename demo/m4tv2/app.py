@@ -30,7 +30,9 @@ from lang_list import (
 
 CHECKPOINTS_PATH = pathlib.Path(os.getenv("CHECKPOINTS_PATH", "/home/user/app/models"))
 if not CHECKPOINTS_PATH.exists():
-    snapshot_download(repo_id="meta-private/M4Tv2", repo_type="model", local_dir=CHECKPOINTS_PATH)
+    snapshot_download(
+        repo_id="meta-private/M4Tv2", repo_type="model", local_dir=CHECKPOINTS_PATH
+    )
 asset_store.env_resolvers.clear()
 asset_store.env_resolvers.append(lambda: "demo")
 demo_metadata = [
@@ -78,11 +80,15 @@ translator = Translator(
 
 def preprocess_audio(input_audio: str) -> None:
     arr, org_sr = torchaudio.load(input_audio)
-    new_arr = torchaudio.functional.resample(arr, orig_freq=org_sr, new_freq=AUDIO_SAMPLE_RATE)
+    new_arr = torchaudio.functional.resample(
+        arr, orig_freq=org_sr, new_freq=AUDIO_SAMPLE_RATE
+    )
     max_length = int(MAX_INPUT_AUDIO_LENGTH * AUDIO_SAMPLE_RATE)
     if new_arr.shape[1] > max_length:
         new_arr = new_arr[:, :max_length]
-        gr.Warning(f"Input audio is too long. Only the first {MAX_INPUT_AUDIO_LENGTH} seconds is used.")
+        gr.Warning(
+            f"Input audio is too long. Only the first {MAX_INPUT_AUDIO_LENGTH} seconds is used."
+        )
     torchaudio.save(input_audio, new_arr, sample_rate=int(AUDIO_SAMPLE_RATE))
 
 
@@ -116,7 +122,9 @@ def run_s2tt(input_audio: str, source_language: str, target_language: str) -> st
     return str(out_texts[0])
 
 
-def run_t2st(input_text: str, source_language: str, target_language: str) -> tuple[tuple[int, np.ndarray] | None, str]:
+def run_t2st(
+    input_text: str, source_language: str, target_language: str
+) -> tuple[tuple[int, np.ndarray] | None, str]:
     source_language_code = LANGUAGE_NAME_TO_CODE[source_language]
     target_language_code = LANGUAGE_NAME_TO_CODE[target_language]
     out_texts, out_audios = translator.predict(

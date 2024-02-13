@@ -115,7 +115,7 @@ extern "C" void std_string_free(std::string* str);
 extern "C" ggml_tensor* WaveformToFbank_forward(
     fairseq2_model& model,
     const std::string &prefix,
-    ggml_tensor* waveform 
+    ggml_tensor* waveform
 );
 extern "C" ggml_tensor* ggml_slice(
     struct ggml_context* ctx,

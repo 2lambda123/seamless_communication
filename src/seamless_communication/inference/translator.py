@@ -337,7 +337,10 @@ class Translator(nn.Module):
                 if src_text is not None:
                     src_texts = [src_text]
                 else:
-                    src_texts, _, = self.predict(
+                    (
+                        src_texts,
+                        _,
+                    ) = self.predict(
                         input=input,
                         task_str=Task.ASR.name,
                         tgt_lang=tgt_lang,
