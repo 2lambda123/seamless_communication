@@ -1,5 +1,5 @@
 """
-  Common helpers for working with ggml + numpy
+Common helpers for working with ggml + numpy
 """
 
 from ggml import ffi, lib
